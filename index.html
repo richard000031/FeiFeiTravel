@@ -1,0 +1,846 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>菲菲旅行社｜想菲就飛，海島旅遊找菲菲</title>
+  <meta name="description" content="菲菲旅行社專注菲律賓旅遊，提供長灘島、宿霧、巴拉望等海島旅遊、自由行、機加酒、團體旅遊與機票服務。" />
+  <style>
+    :root {
+      --bg: #f7fbfc;
+      --surface: rgba(255,255,255,0.78);
+      --surface-strong: #ffffff;
+      --text: #16333d;
+      --muted: #5e7880;
+      --primary: #0f766e;
+      --primary-dark: #0b5d57;
+      --accent: #e7b56a;
+      --line: rgba(22, 51, 61, 0.08);
+      --shadow: 0 18px 45px rgba(14, 42, 52, 0.08);
+      --radius-xl: 28px;
+      --radius-lg: 20px;
+      --radius-md: 14px;
+      --max: 1160px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at top right, rgba(123, 215, 214, 0.22), transparent 26%),
+        radial-gradient(circle at left center, rgba(231, 181, 106, 0.15), transparent 20%),
+        var(--bg);
+      line-height: 1.7;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; display: block; }
+
+    .container {
+      width: min(calc(100% - 32px), var(--max));
+      margin: 0 auto;
+    }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      backdrop-filter: blur(14px);
+      background: rgba(247, 251, 252, 0.75);
+      border-bottom: 1px solid rgba(22, 51, 61, 0.06);
+    }
+
+    .topbar-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 14px 0;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 800;
+      letter-spacing: 0.02em;
+    }
+
+    .brand-badge {
+      width: 42px;
+      height: 42px;
+      border-radius: 14px;
+      display: grid;
+      place-items: center;
+      color: white;
+      background: linear-gradient(135deg, var(--primary), #28b5ad);
+      box-shadow: 0 10px 24px rgba(15, 118, 110, 0.28);
+      font-size: 20px;
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      color: var(--muted);
+      font-size: 15px;
+    }
+
+    .nav a:hover { color: var(--text); }
+
+    .nav-cta {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 10px 16px;
+      border-radius: 999px;
+      background: var(--primary);
+      color: white;
+      font-weight: 700;
+      box-shadow: 0 12px 26px rgba(15, 118, 110, 0.22);
+    }
+
+    .hero {
+      padding: 72px 0 32px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.05fr 0.95fr;
+      gap: 28px;
+      align-items: stretch;
+    }
+
+    .hero-card,
+    .glass-card {
+      background: var(--surface);
+      border: 1px solid rgba(255,255,255,0.55);
+      border-radius: var(--radius-xl);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(16px);
+    }
+
+    .hero-card {
+      padding: 48px;
+      position: relative;
+      overflow: hidden;
+      min-height: 540px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .hero-card::after {
+      content: "";
+      position: absolute;
+      right: -50px;
+      top: -50px;
+      width: 220px;
+      height: 220px;
+      background: radial-gradient(circle, rgba(231,181,106,0.28), transparent 65%);
+      pointer-events: none;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      width: fit-content;
+      padding: 8px 14px;
+      border-radius: 999px;
+      background: rgba(15, 118, 110, 0.1);
+      color: var(--primary);
+      font-weight: 700;
+      font-size: 14px;
+      margin-bottom: 20px;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(34px, 6vw, 62px);
+      line-height: 1.1;
+      letter-spacing: -0.03em;
+    }
+
+    .hero p.lead {
+      margin: 18px 0 0;
+      font-size: 18px;
+      color: var(--muted);
+      max-width: 640px;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-top: 30px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      min-height: 50px;
+      padding: 0 20px;
+      border-radius: 999px;
+      font-weight: 800;
+      transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+    }
+
+    .btn:hover {
+      transform: translateY(-1px);
+    }
+
+    .btn-primary {
+      background: var(--primary);
+      color: white;
+      box-shadow: 0 14px 28px rgba(15, 118, 110, 0.22);
+    }
+
+    .btn-secondary {
+      background: rgba(255,255,255,0.9);
+      color: var(--text);
+      border: 1px solid var(--line);
+    }
+
+    .trust-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 28px;
+    }
+
+    .pill {
+      padding: 10px 14px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.82);
+      border: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .hero-side {
+      display: grid;
+      gap: 20px;
+    }
+
+    .visual-card {
+      position: relative;
+      min-height: 320px;
+      overflow: hidden;
+      background:
+        linear-gradient(180deg, rgba(13, 79, 91, 0.16), rgba(13, 79, 91, 0.4)),
+        url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1200&q=80') center/cover;
+    }
+
+    .visual-overlay {
+      position: absolute;
+      inset: auto 20px 20px 20px;
+      background: rgba(255,255,255,0.16);
+      border: 1px solid rgba(255,255,255,0.25);
+      backdrop-filter: blur(14px);
+      border-radius: 20px;
+      padding: 18px;
+      color: white;
+    }
+
+    .visual-overlay strong {
+      display: block;
+      font-size: 22px;
+      margin-bottom: 6px;
+    }
+
+    .info-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+    }
+
+    .info-box {
+      padding: 22px;
+      min-height: 150px;
+    }
+
+    .info-box h3 {
+      margin: 0 0 10px;
+      font-size: 18px;
+    }
+
+    .info-box p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 15px;
+    }
+
+    section {
+      padding: 38px 0;
+    }
+
+    .section-head {
+      max-width: 720px;
+      margin-bottom: 24px;
+    }
+
+    .section-head .tag {
+      color: var(--primary);
+      font-weight: 800;
+      font-size: 14px;
+      margin-bottom: 8px;
+      display: inline-block;
+    }
+
+    .section-head h2 {
+      margin: 0;
+      font-size: clamp(28px, 4vw, 42px);
+      line-height: 1.18;
+      letter-spacing: -0.02em;
+    }
+
+    .section-head p {
+      margin: 12px 0 0;
+      color: var(--muted);
+      font-size: 17px;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .service-card,
+    .destination-card,
+    .why-card,
+    .contact-card,
+    .about-card {
+      background: var(--surface-strong);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow);
+    }
+
+    .service-card {
+      padding: 26px;
+    }
+
+    .service-icon {
+      width: 54px;
+      height: 54px;
+      border-radius: 16px;
+      display: grid;
+      place-items: center;
+      background: rgba(15, 118, 110, 0.1);
+      font-size: 24px;
+      margin-bottom: 14px;
+    }
+
+    .service-card h3,
+    .why-card h3,
+    .contact-card h3,
+    .about-card h3 {
+      margin: 0 0 10px;
+      font-size: 21px;
+    }
+
+    .service-card p,
+    .why-card p,
+    .contact-card p,
+    .about-card p,
+    .destination-card p,
+    .about-list li {
+      margin: 0;
+      color: var(--muted);
+      font-size: 15px;
+    }
+
+    .about-wrap {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+
+    .about-card {
+      padding: 28px;
+    }
+
+    .about-list {
+      margin: 16px 0 0;
+      padding-left: 18px;
+      display: grid;
+      gap: 10px;
+    }
+
+    .destination-card {
+      overflow: hidden;
+    }
+
+    .destination-image {
+      height: 220px;
+      background-size: cover;
+      background-position: center;
+    }
+
+    .destination-body {
+      padding: 22px;
+    }
+
+    .destination-body h3 {
+      margin: 0 0 10px;
+      font-size: 22px;
+    }
+
+    .why-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+    }
+
+    .why-card {
+      padding: 24px;
+    }
+
+    .cta-banner {
+      padding: 34px;
+      background:
+        linear-gradient(135deg, rgba(15, 118, 110, 0.92), rgba(18, 151, 143, 0.9)),
+        url('https://images.unsplash.com/photo-1519046904884-53103b34b206?auto=format&fit=crop&w=1200&q=80') center/cover;
+      border-radius: var(--radius-xl);
+      color: white;
+      box-shadow: 0 22px 50px rgba(15, 118, 110, 0.24);
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 20px;
+      align-items: center;
+    }
+
+    .cta-banner h2 {
+      margin: 0 0 10px;
+      font-size: clamp(28px, 4vw, 42px);
+      line-height: 1.15;
+    }
+
+    .cta-banner p {
+      margin: 0;
+      color: rgba(255,255,255,0.88);
+      font-size: 17px;
+    }
+
+    .cta-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      justify-content: flex-end;
+    }
+
+    .btn-light {
+      background: white;
+      color: var(--primary-dark);
+    }
+
+    .btn-outline-light {
+      background: rgba(255,255,255,0.12);
+      color: white;
+      border: 1px solid rgba(255,255,255,0.25);
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+
+    .contact-card {
+      padding: 28px;
+    }
+
+    .contact-list {
+      display: grid;
+      gap: 16px;
+      margin-top: 18px;
+    }
+
+    .contact-item strong {
+      display: block;
+      margin-bottom: 4px;
+      font-size: 14px;
+      color: var(--text);
+    }
+
+    .map-box {
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      min-height: 100%;
+      box-shadow: var(--shadow);
+      border: 1px solid var(--line);
+      background: #dcebed;
+    }
+
+    .map-box iframe {
+      width: 100%;
+      min-height: 100%;
+      height: 100%;
+      border: 0;
+    }
+
+    footer {
+      padding: 34px 0 110px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .footer-box {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      padding-top: 22px;
+      border-top: 1px solid var(--line);
+    }
+
+    .mobile-bar {
+      display: none;
+    }
+
+    @media (max-width: 960px) {
+      .nav { display: none; }
+      .hero-grid,
+      .about-wrap,
+      .grid-3,
+      .why-grid,
+      .contact-grid,
+      .cta-banner,
+      .info-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-card {
+        min-height: auto;
+        padding: 32px 24px;
+      }
+
+      .cta-actions {
+        justify-content: flex-start;
+      }
+
+      .map-box { min-height: 340px; }
+    }
+
+    @media (max-width: 640px) {
+      .topbar-inner { padding: 12px 0; }
+      .brand span:last-child { font-size: 15px; }
+      .hero { padding-top: 36px; }
+      h1 { font-size: 38px; }
+      .hero p.lead, .section-head p, .cta-banner p { font-size: 16px; }
+      .section-head h2, .cta-banner h2 { font-size: 30px; }
+      .footer-box {
+        flex-direction: column;
+      }
+      .mobile-bar {
+        position: fixed;
+        left: 12px;
+        right: 12px;
+        bottom: 12px;
+        z-index: 120;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+        padding: 10px;
+        background: rgba(255,255,255,0.88);
+        border: 1px solid rgba(255,255,255,0.75);
+        backdrop-filter: blur(14px);
+        border-radius: 22px;
+        box-shadow: 0 18px 45px rgba(14, 42, 52, 0.16);
+      }
+      .mobile-bar .btn {
+        min-height: 48px;
+        font-size: 15px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="container topbar-inner">
+      <a class="brand" href="#top">
+        <span class="brand-badge">✈</span>
+        <span>菲菲旅行社 Fei Fei Travel</span>
+      </a>
+      <nav class="nav">
+        <a href="#about">關於我們</a>
+        <a href="#services">旅遊服務</a>
+        <a href="#destinations">熱門目的地</a>
+        <a href="#contact">聯絡資訊</a>
+        <a class="nav-cta" href="tel:0227720204">立即來電</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="container hero-grid">
+        <div class="hero-card glass-card">
+          <div class="eyebrow">甲種旅行業｜品保會員｜台北在地服務</div>
+          <h1>想菲就飛，<br />海島旅遊找菲菲</h1>
+          <p class="lead">
+            菲菲旅行社專注菲律賓旅遊規劃，提供長灘島、宿霧、巴拉望等熱門海島行程，
+            整合自由行、機加酒、團體旅遊與機票服務，讓每一次出發都更安心、更輕鬆。
+          </p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="tel:0227720204">立即洽詢行程</a>
+            <a class="btn btn-secondary" href="#destinations">查看熱門目的地</a>
+          </div>
+          <div class="trust-row">
+            <span class="pill">長灘島</span>
+            <span class="pill">宿霧</span>
+            <span class="pill">巴拉望</span>
+            <span class="pill">自由行 / 團體旅遊</span>
+          </div>
+        </div>
+
+        <div class="hero-side">
+          <div class="visual-card glass-card">
+            <div class="visual-overlay">
+              <strong>專做菲律賓旅遊</strong>
+              從度假海島、兩人成行，到團體旅遊與票務安排，提供更聚焦的旅遊建議與規劃。
+            </div>
+          </div>
+          <div class="info-grid">
+            <div class="info-box glass-card">
+              <h3>快速聯繫</h3>
+              <p>電話洽詢更直接，適合先確認出發日期、預算與旅遊型態。</p>
+            </div>
+            <div class="info-box glass-card">
+              <h3>公開資訊透明</h3>
+              <p>旅行業資格與基本資料公開可查，提升初次接觸時的信任感。</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="about">
+      <div class="container">
+        <div class="section-head">
+          <span class="tag">ABOUT</span>
+          <h2>台北在地旅行社，專注規劃菲律賓海島旅遊</h2>
+          <p>
+            菲菲旅行社為公開登錄的甲種旅行業，位於台北市中山區，主打菲律賓旅遊服務，
+            適合想找海島度假、自由行、團體行程或機票安排的旅客。
+          </p>
+        </div>
+        <div class="about-wrap">
+          <article class="about-card">
+            <h3>品牌定位</h3>
+            <p>
+              以「想菲就飛」為核心概念，打造更直覺、更聚焦的海島旅遊體驗。網站以 Google 地圖與行動裝置導流為主，
+              讓旅客在短時間內快速理解服務內容並立即聯繫。
+            </p>
+            <ul class="about-list">
+              <li>聚焦菲律賓旅遊市場，方向更明確</li>
+              <li>可洽詢自由行、機加酒、團體旅遊與票務</li>
+              <li>適合情侶、家庭、朋友與小團體出遊</li>
+            </ul>
+          </article>
+          <article class="about-card">
+            <h3>信任亮點</h3>
+            <ul class="about-list">
+              <li>甲種旅行業</li>
+              <li>品保會員</li>
+              <li>台北市中山區實體地址</li>
+              <li>電話可直接洽詢：02-2772-0204</li>
+              <li>公開資料可查，初次接觸也更安心</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="services">
+      <div class="container">
+        <div class="section-head">
+          <span class="tag">SERVICES</span>
+          <h2>從海島度假到票務安排，提供更完整的旅遊服務</h2>
+          <p>
+            依照你的出發方式與旅遊偏好，協助安排適合的商品組合，減少自己比價、查資料、拼行程的時間成本。
+          </p>
+        </div>
+        <div class="grid-3">
+          <article class="service-card">
+            <div class="service-icon">🌴</div>
+            <h3>菲律賓海島旅遊</h3>
+            <p>聚焦長灘島、宿霧、巴拉望等熱門目的地，適合想放鬆度假、拍照打卡或安排海上活動的旅客。</p>
+          </article>
+          <article class="service-card">
+            <div class="service-icon">✈️</div>
+            <h3>自由行 / 機加酒</h3>
+            <p>想保有旅遊彈性，也能搭配航班與住宿組合，讓自由行更省事、更容易成行。</p>
+          </article>
+          <article class="service-card">
+            <div class="service-icon">👥</div>
+            <h3>團體旅遊</h3>
+            <p>適合朋友、家族或公司旅遊，透過集中安排降低規劃壓力，行程更一致也更好掌握。</p>
+          </article>
+          <article class="service-card">
+            <div class="service-icon">🎫</div>
+            <h3>機票服務</h3>
+            <p>可先洽詢個人或團體票務需求，依出發日期與目的地安排更合適的航班選擇。</p>
+          </article>
+          <article class="service-card">
+            <div class="service-icon">🏨</div>
+            <h3>住宿搭配</h3>
+            <p>依照預算、地點與旅遊風格推薦住宿，讓海島旅程從落地到入住更順暢。</p>
+          </article>
+          <article class="service-card">
+            <div class="service-icon">🧭</div>
+            <h3>旅遊諮詢</h3>
+            <p>還沒決定去哪裡、怎麼玩也沒關係，可先電話詢問，快速釐清適合你的旅遊方向。</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="destinations">
+      <div class="container">
+        <div class="section-head">
+          <span class="tag">DESTINATIONS</span>
+          <h2>熱門海島目的地</h2>
+          <p>如果你正在找經典海島假期，這幾個目的地是許多旅客會優先考慮的熱門選擇。</p>
+        </div>
+        <div class="grid-3">
+          <article class="destination-card">
+            <div class="destination-image" style="background-image:url('https://images.unsplash.com/photo-1500375592092-40eb2168fd21?auto=format&fit=crop&w=1200&q=80');"></div>
+            <div class="destination-body">
+              <h3>長灘島</h3>
+              <p>白沙灘與度假氛圍兼具，適合兩人旅行、放鬆行程與海島拍照體驗。</p>
+            </div>
+          </article>
+          <article class="destination-card">
+            <div class="destination-image" style="background-image:url('https://images.unsplash.com/photo-1518509562904-e7ef99cdcc86?auto=format&fit=crop&w=1200&q=80');"></div>
+            <div class="destination-body">
+              <h3>宿霧</h3>
+              <p>結合市區觀光、海上活動與跳島玩法，適合想要多元行程內容的旅客。</p>
+            </div>
+          </article>
+          <article class="destination-card">
+            <div class="destination-image" style="background-image:url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1200&q=80');"></div>
+            <div class="destination-body">
+              <h3>巴拉望</h3>
+              <p>自然景觀豐富，適合偏好原始海景、特色地形與深度度假感的人。</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="container">
+        <div class="section-head">
+          <span class="tag">WHY US</span>
+          <h2>第一次接觸，也能快速建立信任</h2>
+          <p>對從 Google 地圖或搜尋連結點進來的使用者來說，清楚、透明、好聯絡，就是最重要的開始。</p>
+        </div>
+        <div class="why-grid">
+          <article class="why-card">
+            <h3>專注菲律賓市場</h3>
+            <p>不是什麼都做，而是把重點放在熟悉的海島旅遊領域，讓推薦更聚焦。</p>
+          </article>
+          <article class="why-card">
+            <h3>整合型旅遊服務</h3>
+            <p>從機票、住宿、自由行到團體旅遊，減少旅客自行分散處理的麻煩。</p>
+          </article>
+          <article class="why-card">
+            <h3>公開資料透明</h3>
+            <p>旅行社基本資料與資格可查，對首次詢問的客戶更有安心感。</p>
+          </article>
+          <article class="why-card">
+            <h3>電話洽詢效率高</h3>
+            <p>直接說明預算、人數、日期與目的地，通常比來回訊息更快掌握方案方向。</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="container">
+        <div class="cta-banner">
+          <div>
+            <h2>準備好安排下一趟海島旅行了嗎？</h2>
+            <p>不論你想找兩人成行、團體旅遊、自由行，或先確認適合的菲律賓目的地，都可以先和菲菲旅行社聯繫。</p>
+          </div>
+          <div class="cta-actions">
+            <a class="btn btn-light" href="tel:0227720204">立即來電</a>
+            <a class="btn btn-outline-light" href="#contact">查看地址</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="container">
+        <div class="section-head">
+          <span class="tag">CONTACT</span>
+          <h2>聯絡我們</h2>
+          <p>歡迎先來電詢問出發日期、旅遊型態與預算方向，會更容易快速推薦合適方案。</p>
+        </div>
+        <div class="contact-grid">
+          <article class="contact-card">
+            <h3>菲菲旅行社</h3>
+            <p>DIMERCO TRAVEL AGENCY (TAIWAN) CORP.</p>
+            <div class="contact-list">
+              <div class="contact-item">
+                <strong>電話</strong>
+                <a href="tel:0227720204">02-2772-0204</a>
+              </div>
+              <div class="contact-item">
+                <strong>傳真</strong>
+                <span>02-2775-2323</span>
+              </div>
+              <div class="contact-item">
+                <strong>地址</strong>
+                <span>台北市中山區長安東路二段230號2樓之7</span>
+              </div>
+              <div class="contact-item">
+                <strong>旅行業資訊</strong>
+                <span>甲種旅行業｜註冊編號 699000｜品保會員</span>
+              </div>
+            </div>
+            <div class="hero-actions" style="margin-top:24px;">
+              <a class="btn btn-primary" href="tel:0227720204">手機直接撥號</a>
+              <a class="btn btn-secondary" href="https://share.google/lzBlaeUOOMEUrzI1f" target="_blank" rel="noopener noreferrer">Google 地圖</a>
+            </div>
+          </article>
+          <div class="map-box">
+            <iframe
+              title="菲菲旅行社地圖"
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+              src="https://www.google.com/maps?q=%E5%8F%B0%E5%8C%97%E5%B8%82%E4%B8%AD%E5%B1%B1%E5%8D%80%E9%95%B7%E5%AE%89%E6%9D%B1%E8%B7%AF%E4%BA%8C%E6%AE%B5230%E8%99%9F2%E6%A8%93%E4%B9%8B7&output=embed">
+            </iframe>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-box">
+      <div>
+        <strong>菲菲旅行社</strong><br />
+        台北市中山區長安東路二段230號2樓之7
+      </div>
+      <div>
+        © 2026 Fei Fei Travel. All rights reserved.
+      </div>
+    </div>
+  </footer>
+
+  <div class="mobile-bar">
+    <a class="btn btn-primary" href="tel:0227720204">立即來電</a>
+    <a class="btn btn-secondary" href="https://share.google/lzBlaeUOOMEUrzI1f" target="_blank" rel="noopener noreferrer">查看地圖</a>
+  </div>
+</body>
+</html>
